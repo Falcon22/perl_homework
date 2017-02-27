@@ -46,7 +46,7 @@ sub decode {
     my $str = '';
     
     while (length($encoded_str) != 0) {
-        $str = chr((ord(chop($encoded_str))-$key + 127)%127).$str;
+        $str = chr((ord(chop($encoded_str))-($key%127) + 127)%127).$str;
     }
     print "$str\n";
 }
