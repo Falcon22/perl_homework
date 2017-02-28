@@ -22,11 +22,9 @@ encode('#abc', 1) - печатает '$bcd'
 sub encode {
     my ($str, $key) = @_;
     my $encoded_str = '';
-    
-    while (length($str) != 0) {
-        $encoded_str = chr((ord(chop($str))+$key)%127).$encoded_str;
-    }
-    
+	my @arr = split //, $str;
+	my @encoded_arr = map{chr((ord($_)+$key)%128)} @arr;
+    	$encoded_str = join "", @encoded_arr;
     print "$encoded_str\n";
 }
 
@@ -44,10 +42,9 @@ decode('$bcd', 1) - печатает '#abc'
 sub decode {
     my ($encoded_str, $key) = @_;
     my $str = '';
-    
-    while (length($encoded_str) != 0) {
-        $str = chr((ord(chop($encoded_str))-($key%127) + 127)%127).$str;
-    }
+	my @encoded_arr = split //, $encoded_str;
+	my @arr = map {chr((ord($_)-$key%128+128)%128)} @encoded_arr;
+	$str = join "", @arr;
     print "$str\n";
 }
 

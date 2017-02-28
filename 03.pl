@@ -24,38 +24,13 @@ run(1, 2, 2) - печатает "1, 2\n"
 =cut
 
 sub run {
-    my ($x, $y, $z) = @_;
-    my $min = undef;
-    my $max = undef;
-
-    if ($x > $y) {
-        if ($z > $y) {
-            $min = $y;
-        } else {
-            $min = $z;
-        }
-        if ($x > $z) {
-            $max = $x;
-        } else {
-            $max = $z;
-        }
-    } else {
-        if ($x < $z) {
-            $min = $x;
-        } else {
-            $min = $z;
-        }
-        if ($y > $z) {
-            $max = $y;
-        } else {
-            $max = $z;
-        }
-            
-    }
-    
-    
-
-    print "$min, $max\n";
+	my @arr = @_;
+	my @sort_arr = sort{$a <=> $b} @arr;
+	
+	my $min = $sort_arr[0];
+	my $max = $sort_arr[2];
+	
+	print "$min, $max\n";
 }
 
 1;
