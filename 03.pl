@@ -28,7 +28,7 @@ sub run {
 	my @sort_arr = sort{$a <=> $b} @arr;
 	
 	my $min = $sort_arr[0];
-	my $max = $sort_arr[2];
+	my $max = $sort_arr[-1];
 	
 	print "$min, $max\n";
 }
